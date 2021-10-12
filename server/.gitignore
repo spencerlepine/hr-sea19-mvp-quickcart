@@ -1,0 +1,11 @@
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+.env.production
+.env.development

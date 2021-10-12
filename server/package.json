@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server for Fullstack MVP project from Hack Reactor",
+  "main": "server/app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spencerlepine/hr-sea19-mvp.git"
+  },
+  "keywords": [],
+  "author": "Spencer Lepine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spencerlepine/hr-sea19-mvp/issues"
+  },
+  "homepage": "https://github.com/spencerlepine/hr-sea19-mvp#readme",
+  "scripts": {
+    "start": "node server/app.js",
+    "server:dev": "nodemon server/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  }
+}

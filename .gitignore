@@ -1,5 +1,4 @@
-# Docker files
-docker-compose.yml
+node_modules/
 
 # Logs
 logs
@@ -9,23 +8,11 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# Coverage directory used by tools like istanbul
-coverage
-*.lcov
-
-# Dependency directories
-node_modules/
-
 # Optional npm cache directory
 .npm
 
 # Optional eslint cache
 .eslintcache
-
-# dotenv environment variables file
-.env
-.env.production
-.env.development
 
 # misc
 *.pem
