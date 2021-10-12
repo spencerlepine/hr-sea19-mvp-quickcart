@@ -1,0 +1,19 @@
+import React from 'react';
+
+const CategoryDropdown = () => (
+  <div className="categoryDropdown">
+    <div>
+      <img alt="Product" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHyskKDQsJCY3Jx8lMT0tMTU3Ojo6Iys/OD9EQzRCRTcBCgoKDg0OGxAQGjclICAtLS0tLS8rLTcrLSstLS0tLS03KzctLTcvLS0tLS0tLTItLTctLS0tLS0uLS0zLTUtLf/AABEIADIAMgMBEQACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAGAAIDBAUBB//EAC4QAAIBAwIEAwcFAAAAAAAAAAECAwAEEQUhEjFBURNhoRQiI0JxgcEGUpHR8P/EABoBAAEFAQAAAAAAAAAAAAAAAAABAgMEBQb/xAAqEQACAgEEAAUCBwAAAAAAAAAAAQIDEQQSITEFEyIyQVFhFEJicYGh4f/aAAwDAQACEQMRAD8A9woAjlnjhAMrBcnAzUc7Yw9zwOjFy6QknicZWRT96I2wl0wcWu0PLAAkkbc6e2NM661eCLaP4h8uVZ9/iNdbxHks16WUvsWrG5F3biUDHQgVbpt82Ckvkhshslgs1MMOUgGJ+okRxEwuRHKmcJw54s/Tl9ayvElBpZlhr4wW9K2n1kH0up0x4mM9lbNYE7pR/wANFRix3t7NxBiw33zTPxj/ADZBVofFEszBnncx/MqABvtmpK4xk8zk8fxn+wlJpYSCjSo7aOzVbRmaPJOWO+fOup0XlKpeU8oyLt+97+y/VsiKeo3gtLfjAy7HCjzqtqr/ACoZXZJVXvlhgpcyMzM7MWdtyTXKam59t5ZqwhjhGagZ3aQHCZ4V88cz/u1UnFqPLJuDkSyNLMeaZ2/imRrco8ZY7KJrBmjBDn5jjHbNTxe1IbI29Ouza3SsTiN8Bx+a0NDqXRd+llW+pTh9wprrE8mUDeu3HiXZjVh8IY+53P4rC8Tty9v0L2mjxkw5yRhAcM54RXPJZZoLrI5kiRQFjBA2yadY4PqI1ZyQWjKIOPhJLMW9dvSl3RUehWnknsvDMYYheJstyGRvU1exRXWRss54J5NwRnpSJZmDfHAaqPdG55V2sfajFfYJaoGGrXSY7SDbmCOfoa5vxNNTkzR0zW0o2XhzTSPkN4fu4zyPWs3S1rDbLNja9JJcRpKwjRiGPMjt1p8qq7JYXA2Lklk5cRqkfDGiHoAdsUlsFnCSFhLLyNhSOBVWMnIG7DakzCHtF9UuyxaR+1XcUP723+g3PpVnSVeZakR3T2wyGldauEZBl6xodhrBtzfxOzW8gkjZJGQg9jwkZHlTJ1QsXqWR9dkoe1mfqmhXT3FkujtaWtoiSLccasXPIrw4OOeck9+tUtR4fC2KUeMfQmq1DjndyZN1pesabdwSC3bUYJuITmAhPZgORAJy+Seg2xVCfhUqo7ovP7FmOqjN4lwUhc30usx2iaRqLjwyxmNuRGh6Ak4GcZqotFfNb0uV8Psm82tcNl8Wl/I3CunzA+YCiiOgvbxsGPUQXTCPRtL9iBlmIa4cYOOSDsP7rd0mjVKy+yjdc5vjo1avEAqAFQAqAFQAqAFQAqAP/9k="></img>
+      <h3>Banana</h3>
+
+      <button>View Nutrition</button>
+
+      <div>
+        <button>Replace</button>
+        <button>Remove</button>
+      </div>
+    </div>
+  </div>
+);
+
+export default CategoryDropdown;

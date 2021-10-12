@@ -1,17 +1,14 @@
 import React from 'react';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import PageRoutes from './components/PageRoutes';
 import './App.css';
 
 const App = () => (
   <div className="App">
-    <header className="App-header">
-      <h3>GroceryChecc</h3>
-      <a href="https://spencerlepine.com/">
-        Spencer Lepine
-      </a>
-      <a href="https://github.com/spencerlepine/hr-sea19-mvp">
-        Source Code
-      </a>
-    </header>
+    <Header />
+    <PageRoutes />
+    <Footer />
   </div>
 );
 
