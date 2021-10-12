@@ -1,13 +1,7 @@
 {
   "plugins": [
     "@babel/syntax-dynamic-import",
-    "@babel/plugin-transform-react-jsx",
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "regenerator": true
-      }
-    ],
+    "@babel/plugin-transform-runtime"
   ],
   "presets": [
     "@babel/preset-env",
