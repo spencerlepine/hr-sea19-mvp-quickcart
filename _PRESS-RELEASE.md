@@ -7,7 +7,7 @@ If the press release is more than a page and a half, it is probably too long. Ke
 Oh, and I also like to write press-releases in what I call "Oprah-speak" for mainstream consumer products. Imagine you're sitting on Oprah's couch and have just explained the product to her, and then you listen as she explains it to her audience. That's "Oprah-speak", not "Geek-speak".
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
-# GroceryBot #
+# GroceryChecc #
 Helping busy parents save time by generating a complete grocery shopping list from the couch.
 
 ## Summary ##
@@ -17,7 +17,7 @@ A grocery list assistance and storage portal. Allows users to maintain an indivi
 Grocery shopping can be confusing to inexperienced shoppers. There are numerous departments and branding options. Without a gameplan, it can easy to go over-budget when shopping. Creating a list can be a repetetive task, so why not automate it? Purchasing a variety of food promotes a balanced and healthy lifestyle. It can be difficult to stick to kitchen essentials and stay on track.
 
 ## Solution ##
-GroceryBot solves these problems by doing writing a shopping list for you. Automating this process saves time and money. With a dynamic list stored for each user, it is easy to review a birds-eye list of all groceries at once.
+GroceryChecc solves these problems by doing writing a shopping list for you. Automating this process saves time and money. With a dynamic list stored for each user, it is easy to review a birds-eye list of all groceries at once.
 
 ## Quote  ##
 Many groceries. Much Savings - Floki (CEO of Shiba Inc)
@@ -26,4 +26,4 @@ Many groceries. Much Savings - Floki (CEO of Shiba Inc)
 Visit <projecturl.com>, and create your own list with a few clicks!
 
 ## Customer Quote ##
-Couldn't live without GroceryBot. It saves a lot of time and hassle planning my grocery trips. It's easy to start on my computer, then read the list on my phone at the store. - Karen
+Couldn't live without GroceryChecc. It saves a lot of time and hassle planning my grocery trips. It's easy to start on my computer, then read the list on my phone at the store. - Karen
