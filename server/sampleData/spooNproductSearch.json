@@ -1,0 +1,23 @@
+{
+  "type": "product",
+  "products": [
+    {
+      "id": 192386,
+      "title": "Pizza Buddy Pizza Dough, 16 oz",
+      "image": "https://spoonacular.com/productImages/192386-312x231.jpeg",
+      "imageType": "jpeg"
+    },
+    {
+      "id": 134454,
+      "title": "Bernatellos Pizza Roma  Pizza, 12.1 oz",
+      "image": "https://spoonacular.com/productImages/134454-312x231.jpeg",
+      "imageType": "jpeg"
+    }
+  ],
+  "offset": 0,
+  "number": 2,
+  "totalProducts": 1356,
+  "processingTimeMs": 92,
+  "expires": 1634207880438,
+  "isStale": false
+}
