@@ -1,4 +1,3 @@
-# GroceryChecc #
 <!--
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 There is an approach called "working backwards" that is widely used at Amazon. They work backwards from the customer, rather than starting with an idea for a product and trying to bolt customers onto it. While working backwards can be applied to any specific product decision, using this approach is especially important when developing new products or features.
@@ -8,22 +7,23 @@ If the press release is more than a page and a half, it is probably too long. Ke
 Oh, and I also like to write press-releases in what I call "Oprah-speak" for mainstream consumer products. Imagine you're sitting on Oprah's couch and have just explained the product to her, and then you listen as she explains it to her audience. That's "Oprah-speak", not "Geek-speak".
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
+# GroceryBot #
+Helping busy parents save time by generating a complete grocery shopping list from the couch.
 
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+A grocery list assistance and storage portal. Allows users to maintain an individualized shopping list stored in the cloud. Easily replace items and find relevant grocery products. The straight-forward interface provides a clean user experience to emphasize critical features. This app helps prioritize essential food products to give a solid foundation of a shopping list.
+
 ## Problem ##
-  > Describe the problem your product solves.
+Grocery shopping can be confusing to inexperienced shoppers. There are numerous departments and branding options. Without a gameplan, it can easy to go over-budget when shopping. Creating a list can be a repetetive task, so why not automate it? Purchasing a variety of food promotes a balanced and healthy lifestyle. It can be difficult to stick to kitchen essentials and stay on track.
+
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+GroceryBot solves these problems by doing writing a shopping list for you. Automating this process saves time and money. With a dynamic list stored for each user, it is easy to review a birds-eye list of all groceries at once.
+
+## Quote  ##
+Many groceries. Much Savings - Floki (CEO of Shiba Inc)
+
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+Visit <projecturl.com>, and create your own list with a few clicks!
+
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+Couldn't live without GroceryBot. It saves a lot of time and hassle planning my grocery trips. It's easy to start on my computer, then read the list on my phone at the store. - Karen
