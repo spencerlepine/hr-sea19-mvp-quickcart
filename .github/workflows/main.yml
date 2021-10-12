@@ -1,0 +1,39 @@
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  ci:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['12', '14', '16']
+        os: [ubuntu-latest]
+
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    steps:
+      - name: ♻️ Check out Git Repository
+        uses: actions/checkout@v2
+
+      - name: 🔖  Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: ⬇️  Install npm dependencies
+        run: npm install
+
+      - name: ✅  Run tests
+        run: npm run test
+
+      - name: 🔴 Lint all files
+        run: npm run lint:check
