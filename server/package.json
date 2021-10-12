@@ -81,6 +81,9 @@
   },
   "jest": {
     "testEnvironment": "node",
+    "setupFiles": [
+      "dotenv/config"
+    ],
     "testEnvironmentOptions": {
       "NODE_ENV": "test"
     },
