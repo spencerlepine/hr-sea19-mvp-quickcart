@@ -78,6 +78,8 @@
       "react"
     ],
     "rules": {
+      "no-unused-vars": "off",
+      "react/prop-types": "off",
       "no-console": "off",
       "react-hooks/exhaustive-deps": "off",
       "react/display-name": "off",
