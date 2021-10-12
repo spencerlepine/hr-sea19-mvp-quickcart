@@ -11,8 +11,10 @@ on:
 
 jobs:
 
-  ci:
+  client tests:
     runs-on: ${{ matrix.os }}
+    env:
+      working-directory: ./client
     strategy:
       fail-fast: false
       matrix:
@@ -25,15 +27,52 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 🔖  Set up Node
+        working-directory: ${{env.working-directory}}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
 
       - name: ⬇️  Install npm dependencies
+        working-directory: ${{env.working-directory}}
         run: npm install
 
       - name: ✅  Run tests
+        working-directory: ${{env.working-directory}}
         run: npm run test
 
       - name: 🔴 Lint all files
+        working-directory: ${{env.working-directory}}
+        run: npm run lint:check
+
+  server tests:
+    runs-on: ${{ matrix.os }}
+    env:
+      working-directory: ./server
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['12', '14', '16']
+        os: [ubuntu-latest]
+
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    steps:
+      - name: ♻️ Check out Git Repository
+        uses: actions/checkout@v2
+
+      - name: 🔖  Set up Node
+        working-directory: ${{env.working-directory}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: ⬇️  Install npm dependencies
+        working-directory: ${{env.working-directory}}
+        run: npm install
+
+      - name: ✅  Run tests
+        working-directory: ${{env.working-directory}}
+        run: npm run test
+
+      - name: 🔴 Lint all files
+        working-directory: ${{env.working-directory}}
         run: npm run lint:check
