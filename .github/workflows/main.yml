@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  client tests:
+  client-tests:
     runs-on: ${{ matrix.os }}
     env:
       working-directory: ./client
@@ -43,7 +43,7 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: npm run lint:check
 
-  server tests:
+  server-tests:
     runs-on: ${{ matrix.os }}
     env:
       working-directory: ./server
