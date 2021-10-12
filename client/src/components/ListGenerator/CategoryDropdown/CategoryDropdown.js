@@ -1,19 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Popup from '../../Popup/Popup';
+import extractProductData from './extractProductData';
 
-const CategoryDropdown = () => (
-  <div className="categoryDropdown">
-    <div>
-      <img alt="Product" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHyskKDQsJCY3Jx8lMT0tMTU3Ojo6Iys/OD9EQzRCRTcBCgoKDg0OGxAQGjclICAtLS0tLS8rLTcrLSstLS0tLS03KzctLTcvLS0tLS0tLTItLTctLS0tLS0uLS0zLTUtLf/AABEIADIAMgMBEQACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAGAAIDBAUBB//EAC4QAAIBAwIEAwcFAAAAAAAAAAECAwAEEQUhEjFBURNhoRQiI0JxgcEGUpHR8P/EABoBAAEFAQAAAAAAAAAAAAAAAAABAgMEBQb/xAAqEQACAgEEAAUCBwAAAAAAAAAAAQIDEQQSITEFEyIyQVFhFEJicYGh4f/aAAwDAQACEQMRAD8A9woAjlnjhAMrBcnAzUc7Yw9zwOjFy6QknicZWRT96I2wl0wcWu0PLAAkkbc6e2NM661eCLaP4h8uVZ9/iNdbxHks16WUvsWrG5F3biUDHQgVbpt82Ckvkhshslgs1MMOUgGJ+okRxEwuRHKmcJw54s/Tl9ayvElBpZlhr4wW9K2n1kH0up0x4mM9lbNYE7pR/wANFRix3t7NxBiw33zTPxj/ADZBVofFEszBnncx/MqABvtmpK4xk8zk8fxn+wlJpYSCjSo7aOzVbRmaPJOWO+fOup0XlKpeU8oyLt+97+y/VsiKeo3gtLfjAy7HCjzqtqr/ACoZXZJVXvlhgpcyMzM7MWdtyTXKam59t5ZqwhjhGagZ3aQHCZ4V88cz/u1UnFqPLJuDkSyNLMeaZ2/imRrco8ZY7KJrBmjBDn5jjHbNTxe1IbI29Ouza3SsTiN8Bx+a0NDqXRd+llW+pTh9wprrE8mUDeu3HiXZjVh8IY+53P4rC8Tty9v0L2mjxkw5yRhAcM54RXPJZZoLrI5kiRQFjBA2yadY4PqI1ZyQWjKIOPhJLMW9dvSl3RUehWnknsvDMYYheJstyGRvU1exRXWRss54J5NwRnpSJZmDfHAaqPdG55V2sfajFfYJaoGGrXSY7SDbmCOfoa5vxNNTkzR0zW0o2XhzTSPkN4fu4zyPWs3S1rDbLNja9JJcRpKwjRiGPMjt1p8qq7JYXA2Lklk5cRqkfDGiHoAdsUlsFnCSFhLLyNhSOBVWMnIG7DakzCHtF9UuyxaR+1XcUP723+g3PpVnSVeZakR3T2wyGldauEZBl6xodhrBtzfxOzW8gkjZJGQg9jwkZHlTJ1QsXqWR9dkoe1mfqmhXT3FkujtaWtoiSLccasXPIrw4OOeck9+tUtR4fC2KUeMfQmq1DjndyZN1pesabdwSC3bUYJuITmAhPZgORAJy+Seg2xVCfhUqo7ovP7FmOqjN4lwUhc30usx2iaRqLjwyxmNuRGh6Ak4GcZqotFfNb0uV8Psm82tcNl8Wl/I3CunzA+YCiiOgvbxsGPUQXTCPRtL9iBlmIa4cYOOSDsP7rd0mjVKy+yjdc5vjo1avEAqAFQAqAFQAqAFQAqAP/9k="></img>
-      <h3>Banana</h3>
+const NutritionPopup = ({ togglePopup, product }) => (
+  <Popup>
+    <Modal.Dialog>
+      <Modal.Header closeButton onClick={togglePopup}>
+        <Modal.Title>Nutrition Facts</Modal.Title>
+      </Modal.Header>
 
-      <button>View Nutrition</button>
+      <Modal.Body>
+        <p>{product['ingredients_text']}</p>
+      </Modal.Body>
 
-      <div>
-        <button>Replace</button>
-        <button>Remove</button>
-      </div>
-    </div>
-  </div>
+      <Modal.Footer>
+        <Button onClick={togglePopup} variant="secondary">Close</Button>
+      </Modal.Footer>
+    </Modal.Dialog>
+  </Popup>
 );
+
+const CategoryDropdown = ({ groceries, categoryName }) => {
+  const [expandCategory, setExpandCategory] = useState(true);
+  const [showNutrition, setShowNutrition] = useState(false);
+
+  const formattedGroceries = (groceries || []).map((groceryObj) => extractProductData(groceryObj));
+  const categoryTitle = `${categoryName.substring(0, 1).toUpperCase()}${categoryName.substring(1, categoryName.length)}`;
+
+  return (
+    <div className="categoryDropdown">
+      <button
+        onClick={() => setExpandCategory(!expandCategory)}
+        className="categoryExpandBtn">
+        {!expandCategory ? 'Show More' : 'Minimize'}
+      </button>
+
+      <h3>{categoryTitle}</h3>
+
+      {expandCategory && (
+        <>
+          {formattedGroceries.map((groceryObj) => (
+            <div key={groceryObj["_id"]} className="listCard">
+              <img alt="Product" src={groceryObj.image}></img>
+
+              <div className="productCardDetails">
+
+
+                <h5>{groceryObj.name}</h5>
+
+                <>
+                  <Button
+                    className="nutritionButton"
+                    onClick={() => setShowNutrition(!showNutrition)}
+                  >
+                    View Nutrition
+                  </Button>
+                  {showNutrition && (
+                    <NutritionPopup product={groceryObj} togglePopup={() => setShowNutrition(!showNutrition)} />
+                  )}
+                </>
+
+                <div className="productCardButtons">
+                  <button className="replaceButton">Replace</button>
+                  <button className="removeButton">Remove</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </>
+      )}
+      <hr />
+    </div>
+  )
+};
 
 export default CategoryDropdown;

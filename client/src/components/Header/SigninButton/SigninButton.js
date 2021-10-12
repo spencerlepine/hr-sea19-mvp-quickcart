@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useAuth from '../../../context/AuthContext';
 import SigninForm from '../SigninForm/SigninForm';
+import Button from 'react-bootstrap/Button';
 
 const SigninButton = () => {
   const { userIsLoggedIn, handleLogout } = useAuth();
@@ -9,10 +10,10 @@ const SigninButton = () => {
   return (
     <>
       {userIsLoggedIn ? (
-        <button className="accountBtn" onClick={handleLogout}>Logout</button>
+        <Button className="accountBtn" onClick={handleLogout}>Logout</Button>
       ) : (
         <>
-          <button className="accountBtn" onClick={() => setOpenSigninForm(true)}>Log In</button>
+          <Button className="accountBtn" onClick={() => setOpenSigninForm(true)}>Log In</Button>
           <SigninForm renderForm={openSigninForm} toggleRenderForm={setOpenSigninForm} />
         </>
       )}
