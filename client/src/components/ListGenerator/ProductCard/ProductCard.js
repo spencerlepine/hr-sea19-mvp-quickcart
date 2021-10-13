@@ -11,6 +11,13 @@ const NutritionPopup = ({ togglePopup, product }) => (
       </Modal.Header>
 
       <Modal.Body>
+        {product['nutrition_image'] && (
+          <img
+            className="nutitrionImage"
+            src={product['nutrition_image']}
+            alt='Nutrition facts'
+          />
+        )}
         <p>{product['ingredients_text'] || 'Unable to find ingredients data'}</p>
       </Modal.Body>
 
@@ -23,7 +30,7 @@ const NutritionPopup = ({ togglePopup, product }) => (
 
 const ProductCard = ({ groceryObj }) => {
   const [showNutrition, setShowNutrition] = useState(false);
-
+  console.log(groceryObj)
   const handleRemove = () => {
     // HERE
     // remove item from list
