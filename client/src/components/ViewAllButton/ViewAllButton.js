@@ -2,21 +2,21 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-const NewListButton = () => {
+const ViewAllButton = () => {
   const history = useHistory();
   const location = useLocation();
 
   const handleClick = () => {
-    if (location.pathname === '/list') {
+    if (location.pathname === '/search') {
       window.location.reload();
       return
     }
-    history.push('./list')
+    history.push('./search')
   }
 
   return (
-    <Button variant="primary" onClick={handleClick}>New List</Button>
+    <Button style={{ backgroundColor: 'orange' }} variant="primary" onClick={handleClick}>View All</Button>
   );
 };
 
-export default NewListButton;
+export default ViewAllButton;

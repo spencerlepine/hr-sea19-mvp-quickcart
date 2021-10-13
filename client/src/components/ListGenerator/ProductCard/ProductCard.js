@@ -6,27 +6,23 @@ import { findReplacementItem, removeListItem } from '../../../api';
 import Spinner from 'react-bootstrap/Spinner';
 
 const NutritionPopup = ({ togglePopup, product }) => (
-  <Popup>
-    <Modal.Dialog>
-      <Modal.Header closeButton onClick={togglePopup}>
-        <Modal.Title>Nutrition Facts</Modal.Title>
-      </Modal.Header>
+  <Popup togglePopup={togglePopup}>
+    <h4>Nutrition Facts</h4>
 
-      <Modal.Body>
-        {product['nutrition_image'] && (
-          <img
-            className="nutitrionImage"
-            src={product['nutrition_image']}
-            alt='Nutrition facts'
-          />
-        )}
-        <p>{product['ingredients_text'] || 'Unable to find ingredients data'}</p>
-      </Modal.Body>
+    <Modal.Body>
+      {product['nutrition_image'] && (
+        <img
+          className="nutitrionImage"
+          src={product['nutrition_image']}
+          alt='Nutrition facts'
+        />
+      )}
+      <p>{product['ingredients_text'] || 'Unable to find ingredients data'}</p>
+    </Modal.Body>
 
-      <Modal.Footer>
-        <Button onClick={togglePopup} variant="secondary">Close</Button>
-      </Modal.Footer>
-    </Modal.Dialog>
+    <Modal.Footer>
+      <Button onClick={togglePopup} variant="secondary">Close</Button>
+    </Modal.Footer>
   </Popup>
 );
 
@@ -84,7 +80,7 @@ const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
 
           <div className="productCardDetails">
 
-            <h5>{groceryObj.name}</h5>
+            <h5>{(groceryObj.name || '').substring(0, 30)}</h5>
 
             <>
               <Button

@@ -21,62 +21,75 @@ const SigninForm = ({ renderForm, toggleRenderForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (renderSignup) {
-      handleLogin(formEntries);
+    if (!renderSignup) {
+      const { email, password } = formEntries;
+      handleLogin(email, password);
       toggleRenderForm(false);
     } else {
-      handleSignup(formEntries);
+      const { name, email, password } = formEntries;
+      handleSignup(name, email, password);
       toggleRenderForm(false);
     }
   }
 
   if (renderForm) {
     return (
-      <Popup>
-        {renderSignup ? (
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                {'We\'ll never share your email with anyone else.'}
-              </Form.Text>
-            </Form.Group>
+      <Popup togglePopup={toggleRenderForm}>
+        {!renderSignup ? (
+          <>
+            <Form className="accountForm">
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control name="email" type="email" placeholder="Enter email" value={formEntries['email']} onChange={handleChange} />
+                <Form.Text className="text-muted">
+                  {'We\'ll never share your email with anyone else.'}
+                </Form.Text>
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Button
-              className="accountBtn"
-              onClick={handleSubmit}
-              variant="primary"
-              type="submit">
-              Create
-            </Button>
-          </Form>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control name="password" type="password" placeholder="Password" value={formEntries['password']} onChange={handleChange} />
+              </Form.Group>
+              <Button
+                className="accountBtn"
+                onClick={handleSubmit}
+                variant="primary"
+                type="submit">
+                Create
+              </Button>
+            </Form>
+            <p className="accountForm">{'Don\'t'} have an account? <a href="/" onClick={(e) => { e.preventDefault(); setRenderSignup(!renderSignup) }}>Sign up</a></p>
+          </>
         ) : (
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                {'We\'ll never share your email with anyone else.'}
-              </Form.Text>
-            </Form.Group>
+          <>
+            <Form className="accountForm">
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Name</Form.Label>
+                <Form.Control name="name" type="name" placeholder="Enter Name" value={formEntries['name']} onChange={handleChange} />
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Button
-              className="accountBtn"
-              onClick={handleSubmit}
-              variant="primary"
-              type="submit">
-              Next
-            </Button>
-          </Form>
+              <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control name="email" type="email" placeholder="Enter email" value={formEntries['email']} onChange={handleChange} />
+                <Form.Text className="text-muted">
+                  {'We\'ll never share your email with anyone else.'}
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control name="password" type="password" placeholder="Password" value={formEntries['password']} onChange={handleChange} />
+              </Form.Group>
+              <Button
+                className="accountBtn"
+                onClick={handleSubmit}
+                variant="primary"
+                type="submit">
+                Next
+              </Button>
+            </Form>
+            <p className="accountForm">Already have an account? <a href="/" onClick={(e) => { e.preventDefault(); setRenderSignup(!renderSignup) }}>Log in</a></p>
+          </>
         )}
       </Popup>
     );

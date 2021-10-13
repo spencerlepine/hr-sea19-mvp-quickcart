@@ -14,7 +14,10 @@ export const generateGroceryList = (categories, callback) => {
     .then((listMeta) => {
       callback(listMeta.data)
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      callback({})
+      console.log(err)
+    })
 }
 
 export const removeListItem = (listId, product, category, callback) => {
@@ -37,11 +40,36 @@ export const findReplacementItem = (category, callback) => {
     .catch((err) => console.log(err))
 }
 
-export const saveNewList = (list, callback) => {
-  const url = `${SERVER_URL}${endpointURL}/list/save`
-  axios.post(url, list)
-    .then(() => {
-      callback();
+export const saveNewList = (list, userId, name, callback) => {
+  const url = `${SERVER_URL}${endpointURL}/list/save`;
+
+  axios.post(url, { list, userId, name })
+    .then((listId) => {
+      callback(listId.data);
     })
     .catch((err) => console.log(err))
 }
+
+export const fetchSingleList = (listId, userId, callback) => {
+  const url = `${SERVER_URL}${endpointURL}/list/info`;
+
+  axios.get(url, {
+    params: { listId, userId }
+  })
+    .then((listMeta) => {
+      callback(listMeta.data);
+    })
+    .catch((err) => console.log(err))
+}
+
+export const fetchAllUserLists = (userId, callback) => {
+  const url = `${SERVER_URL}${endpointURL}/list/user?userId=${userId}`;
+
+  axios.get(url)
+    .then((listData) => {
+      const parsed = listData.data.map((e) => ({ ...e, list: JSON.parse(e.list) }))
+      callback(parsed);
+    })
+    .catch((err) => console.log(err))
+}
+
