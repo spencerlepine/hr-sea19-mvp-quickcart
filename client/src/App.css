@@ -16,7 +16,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 3.5rem;
+  height: 4.5rem;
 }
 
 .App-footer a {
@@ -33,7 +33,8 @@
 }
 
 .container {
-  padding-bottom: 3.5rem;
+  margin: 2em;
+  padding-bottom: 7rem;
 }
 
 .App-header h3 {
@@ -71,7 +72,7 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: #282c349e;
 }
 
@@ -183,7 +184,7 @@ button {
   text-align: center;
   background-color: #dcdcdc;
   padding: 30px;
-  margin: 3em;
+  margin: 1em;
 }
 
 .popupClose {
