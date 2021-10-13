@@ -25,6 +25,9 @@ Technology overview and feature summary
 ```sh
 cd client
 npm install
+npm start
+# *Open new terminal window*
 cd ../server
+npm install
 npm start
 ```
