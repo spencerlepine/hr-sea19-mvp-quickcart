@@ -13,7 +13,7 @@ const PageRoutes = () => (
     <Route exact path="/">
       <HomePage />
     </Route>
-    <Route path="/new">
+    <Route path="/list">
       <ListGenerator />
     </Route>
     <Route path="/search">

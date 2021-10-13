@@ -6,7 +6,7 @@ const NewListButton = () => {
   const history = useHistory();
 
   return (
-    <Button variant="primary" onClick={() => history.push('./new')}>New List</Button>
+    <Button variant="primary" onClick={() => history.push('./list')}>New List</Button>
   );
 };
 

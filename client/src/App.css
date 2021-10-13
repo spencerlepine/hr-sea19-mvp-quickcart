@@ -4,13 +4,21 @@
 
 .App-header {
   background-color: #282c34;
-  /* min-height: 100vh; */
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  justify-content: center;
+  flex-direction: column;  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 0.6em;
+}
+
+.App-header h3 {
+  width: fit-content;
+  padding: 0.4em;
+  display: inline;
+}
+
+.App-header button {
+  background-color: rgb(118, 176, 30) !important;
+  float: right;
 }
 
 .App-link {
@@ -86,6 +94,7 @@ button {
   margin-left: auto;
 }
 
-/* .nutritionButton {
-  color: red;
-} */
+.nutritionButton {
+  margin-left: 1em;
+  background-color: rgb(43, 136, 206) !important;
+}
