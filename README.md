@@ -15,15 +15,10 @@ Technology overview and feature summary
  - Ticketing System: [Trello Board](https://trello.com/invite/b/ofaJK83K/7d586304efd0a7513a2e75d1e5b860fc/hr-sea19-mvp)
 
 ## 📦 Technologies:
-<!--
-- [Docker](https://www.docker.com/)
-- [AWS EC2](https://aws.amazon.com/ec2/)
-- [Postgres](https://www.postgresql.org/)
+- [React](HERE)
+- [MongoDB](HERE)
 - [Express](https://expressjs.com/)
-- [Node.js](https://nodejs.org/en/)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Jest](https://jestjs.io/)
--->
+- [OpenFoodFacts API](https://wiki.openfoodfacts.org/API/)
 
 ## Setup:
 

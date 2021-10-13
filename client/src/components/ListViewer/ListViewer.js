@@ -1,9 +1,9 @@
 import React from 'react';
-// import NewListButton from './components/NewListButton/NewListButton';
+import NewListButton from '../NewListButton/NewListButton';
 
 const ListViewer = () => (
   <div className="listViewer">
-    {/* <NewListButton /> */}
+    <NewListButton />
     {/* <SearchBar></SearchBar> */}
     {/* <ListGrid /> */}
   </div>
