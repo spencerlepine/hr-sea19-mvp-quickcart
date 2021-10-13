@@ -41,10 +41,28 @@ export const findReplacementItem = (category, callback) => {
 }
 
 export const saveNewList = (list, callback) => {
-  const url = `${SERVER_URL}${endpointURL}/list/save`
-  axios.post(url, list)
+  const url = `${SERVER_URL}${endpointURL}/list/save`;
+  // HERE
+  const userId = window.prompt('Enter your userId') || 'demoUser';
+
+  axios.post(url, { list, userId })
     .then(() => {
       callback();
     })
     .catch((err) => console.log(err))
 }
+
+export const fetchAllUserLists = (list, callback) => {
+  // Here
+  const userId = window.prompt('Enter your userId') || 'demoUser';
+
+  const url = `${SERVER_URL}${endpointURL}/list/user?userId=${userId}`;
+
+  axios.get(url)
+    .then((listData) => {
+      const parsed = listData.map((e) => (JSON.parse(e.list)))
+      callback(parsed);
+    })
+    .catch((err) => console.log(err))
+}
+

@@ -47,9 +47,10 @@ const ListGenerator = () => {
 
   const handleSaveList = (list) => {
     const filtersIds = {};
-    Object.keys(filtersIds).forEach((category) => {
+    Object.keys(list).forEach((category) => {
       filtersIds[category] = list[category].map((e) => e._id)
     });
+    console.log(filtersIds)
 
     saveNewList(filtersIds, () => {
       history.push('/search')

@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const userListSchema = new mongoose.Schema({
-  content: {
+  userId: {
+    type: String,
+    required: true,
+  },
+  list: {
     type: String,
     required: true,
   },
@@ -11,4 +15,4 @@ const userListSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('userList', userListSchema);
+module.exports = mongoose.model('UserList', userListSchema);

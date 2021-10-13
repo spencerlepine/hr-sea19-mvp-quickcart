@@ -2,6 +2,7 @@ const axios = require('axios');
 const config = require('../../config/config');
 const sampleList = require('./sampleResponse.json');
 const extractValidProducts = require('./extractValidProducts');
+const UserList = require('../../models/UserList');
 
 const options = {
   headers: {
@@ -68,8 +69,42 @@ module.exports = {
     // HERE
   },
   saveEntireList: (req, res) => {
-    // HERE
-    res.status(201).json('Success!');
+    const userList = new UserList({
+      userId: req.body.userId,
+      list: JSON.stringify(req.body.list),
+    });
+
+    const savePromise = new Promise((resolve, reject) => {
+      // Save model
+      userList.save((err) => {
+        if (err) {
+          return reject(new Error(`Error with exam ersult save... ${err}`));
+        }
+        // Return saved model
+        return resolve(userList);
+      });
+    });
+
+    savePromise
+      .then((resultData) => {
+        res.status(201).json(resultData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(err);
+      });
+  },
+  fetchUserLists: (req, res) => {
+    const { userId: id } = req.query;
+
+    UserList.find({ userId: id })
+      .then((items) => {
+        res.status(200).json(items);
+      })
+      .catch((err) => {
+        res.status(500).send(err);
+        console.error(`Failed to find documents: ${err}`);
+      });
   },
   updateExistingList: () => {
     console.log('yeet');
