@@ -6,6 +6,7 @@ import ProductCard from './ProductCard/ProductCard';
 import { generateGroceryList } from '../../api';
 import categories from '../../config/categories';
 import { useLocation } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 // HERE
 // Save list to cart
@@ -20,14 +21,15 @@ function useQuery() {
 const ListGenerator = () => {
   const [groceryList, setGroceryList] = useState({});
   let listId = useQuery().get('id');
+  const listItemsCount = Object.values(groceryList).reduce((sum, elem) => sum += elem.length, 0);
 
   useEffect(() => {
-    if (!listId) {
+    if (!listId && listItemsCount === 0) {
       generateGroceryList(categories, (newList) => {
         setGroceryList(newList);
       });
     }
-  }, [listId]);
+  }, [listId, listItemsCount]);
 
   return (
     <div className="listGenerator">
@@ -41,19 +43,30 @@ const ListGenerator = () => {
         <>
           {Object.values(groceryList).reduce(
             (combined, item) => (combined.concat(item)), []
-          ).map((groceryObj) => {
-            <ProductCard key={groceryObj['_id']} groceryObj={groceryObj} />
-          })}
+          ).map((groceryObj) => (
+            <ProductCard
+              listId={listId}
+              setGroceryList={setGroceryList}
+              key={groceryObj['_id']}
+              groceryObj={groceryObj} />
+          ))}
         </>
       ) : (
         <>
-          {Object.keys(groceryList).map((groceryCategory, i) => (
-            <CategoryDropdown
-              key={groceryCategory}
-              groceries={groceryList[groceryCategory]}
-              categoryName={groceryCategory}
-            />
-          ))}
+          {Object.keys(groceryList).length > 0 ? (
+            <>
+              {Object.keys(groceryList).map((groceryCategory, i) => (
+                <CategoryDropdown
+                  key={groceryCategory}
+                  setGroceryList={setGroceryList}
+                  groceries={groceryList[groceryCategory]}
+                  categoryName={groceryCategory}
+                />
+              ))}
+            </>
+          ) : (
+            <Spinner animation="grow" className="loadingSpinner" />
+          )}
         </>
       )}
     </div>

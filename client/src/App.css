@@ -105,3 +105,9 @@ button {
   height: 300px !important;
   border: 3px solid rgb(174, 174, 174);
 }
+
+.loadingSpinner {
+  margin: 0 40vw !important;
+  width: 8em !important;
+  height: 8em !important;
+}

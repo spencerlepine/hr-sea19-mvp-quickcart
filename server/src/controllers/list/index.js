@@ -46,30 +46,34 @@ module.exports = {
     //     productCount: 5,
     //   },
     // ];
-    if (Object.values(req.body).length === 0) {
+    if (req.query.categories === undefined) {
       res.status(400).json('Invalid category parameters');
+      return;
     }
 
-    res.status(200).json(sampleList);
+    const { categories: preFormat } = req.query;
+    const categories = JSON.parse(preFormat);
+
+    // res.status(200).json(sampleList);
     // HERE DELET THIS
 
-    // // https://wiki.openfoodfacts.org/API/Read/Product#Individual_category
-    // const categoryPromises = categories.map(({ name: category }) => (
-    //   fetch(req, res, `/category/${category}/1.json`, {}, {}, 'GET')
-    // ));
+    // https://wiki.openfoodfacts.org/API/Read/Product#Individual_category
+    const categoryPromises = categories.map(({ name: category }) => (
+      fetch(req, res, `/category/${category}/1.json?lc=en`, {}, {}, 'GET')
+    ));
 
-    // Promise.all(categoryPromises)
-    //   .then((productData) => {
-    //     const sorted = {};
+    Promise.all(categoryPromises)
+      .then((productData) => {
+        const sorted = {};
 
-    //     categories.forEach((categoryObj, i) => {
-    //       const { name, productCount } = categoryObj;
+        categories.forEach((categoryObj, i) => {
+          const { name, productCount } = categoryObj;
 
-    //       sorted[name] = productData[i].products.slice(0, productCount);
-    //     });
+          sorted[name] = productData[i].products.slice(0, productCount);
+        });
 
-    //     res.status(200).json(sorted);
-    //   });
+        res.status(200).json(sorted);
+      });
   },
   removeListItem: () => {
     console.log('yeet');

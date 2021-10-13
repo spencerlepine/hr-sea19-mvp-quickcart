@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Popup from '../../Popup/Popup';
 import Modal from 'react-bootstrap/Modal';
+import { findReplacementItem, removeListItem } from '../../../api';
 
 const NutritionPopup = ({ togglePopup, product }) => (
   <Popup>
@@ -28,19 +29,45 @@ const NutritionPopup = ({ togglePopup, product }) => (
   </Popup>
 );
 
-const ProductCard = ({ groceryObj }) => {
+const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
   const [showNutrition, setShowNutrition] = useState(false);
-  console.log(groceryObj)
+
   const handleRemove = () => {
-    // HERE
-    // remove item from list
+    const filterList = (prevList) => {
+      const output = {};
+      Object.keys(prevList).forEach((categoryKey) => {
+        output[categoryKey] = prevList[categoryKey].filter((product) => (
+          product['_id'] !== groceryObj['_id']
+        ))
+      });
+      return output
+    }
+
+    if (listId) {
+      removeListItem(listId, groceryObj, category, () => {
+        setGroceryList(filterList)
+      });
+    } else {
+      setGroceryList(filterList)
+    }
   }
 
   const handleReplace = () => {
-    // HERE
-    // remove item from list
-    // fetch replacement
-    // render that instead
+    findReplacementItem(category, (newProduct) => {
+      if (listId) {
+        removeListItem(groceryObj);
+      }
+
+      setGroceryList((prevList) => {
+        const output = {};
+        Object.keys(prevList).forEach((categoryKey) => {
+          output[categoryKey] = prevList[categoryKey].map((product) => (
+            product['_id'] !== groceryObj['_id'] ? product : newProduct
+          ))
+        });
+        return output
+      })
+    });
   }
 
   return (
@@ -48,7 +75,6 @@ const ProductCard = ({ groceryObj }) => {
       <img alt="Product" src={groceryObj.image}></img>
 
       <div className="productCardDetails">
-
 
         <h5>{groceryObj.name}</h5>
 
@@ -65,8 +91,12 @@ const ProductCard = ({ groceryObj }) => {
         </>
 
         <div className="productCardButtons">
-          <button className="replaceButton" onClick={handleReplace}>Replace</button>
-          <button className="removeButton" onClick={handleRemove}>Remove</button>
+          {category && (
+            <>
+              <button className="replaceButton" onClick={handleReplace}>Replace</button>
+              <button className="removeButton" onClick={handleRemove}>Remove</button>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import extractProductData from './extractProductData';
 import ProductCard from '../ProductCard/ProductCard';
+import Spinner from 'react-bootstrap/Spinner';
 
-const CategoryDropdown = ({ groceries, categoryName }) => {
+const CategoryDropdown = ({ groceries, categoryName, setGroceryList }) => {
   const [expandCategory, setExpandCategory] = useState(true);
 
   const formattedGroceries = (groceries || []).map((groceryObj) => extractProductData(groceryObj));
@@ -21,9 +22,17 @@ const CategoryDropdown = ({ groceries, categoryName }) => {
 
       {expandCategory && (
         <>
-          {formattedGroceries.map((groceryObj) => (
-            <ProductCard key={groceryObj['_id']} groceryObj={groceryObj} />
-          ))}
+          {
+            formattedGroceries.length > 0 ? (
+              <>
+                {formattedGroceries.map((groceryObj) => (
+                  <ProductCard key={groceryObj['_id']} groceryObj={groceryObj} category={categoryName} setGroceryList={setGroceryList} />
+                ))}
+              </>
+            ) : (
+              <Spinner animation="grow" />
+            )
+          }
         </>
       )}
       <hr />
