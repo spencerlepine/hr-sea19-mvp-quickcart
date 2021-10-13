@@ -9,6 +9,8 @@ import { useLocation, useHistory } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import useAuth from '../../context/AuthContext';
+import useListStorage from '../../context/ListStorageContext';
+import trimProductData from './trimProductData';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -22,6 +24,7 @@ const ListGenerator = () => {
   let listId = useQuery().get('id');
   const history = useHistory();
   const { userId } = useAuth();
+  const { renderOrFetchList, saveListToState } = useListStorage();
 
   const incrementProgress = () => {
     const delay = 1000;
@@ -47,13 +50,34 @@ const ListGenerator = () => {
     }
   }, [listId, listItemsCount]);
 
+  useEffect(() => {
+    if (listId) {
+      renderOrFetchList(listId, userId, (newList) => {
+        setGroceryList(newList.list || []);
+      })
+    }
+  }, [listId]);
+
   const handleSaveList = (list) => {
-    const filtersIds = {};
+    // const filtersIds = {};
+    // Object.keys(list).forEach((category) => {
+    //   filtersIds[category] = list[category].map((e) => e._id)
+    // });
+
+    // saveNewList(filtersIds, userId, (listId) => {
+    //   saveListToState({ _id: listId, list: filtersIds });
+    //   history.push('/search')
+    // });
+
+    const filtered = {};
     Object.keys(list).forEach((category) => {
-      filtersIds[category] = list[category].map((e) => e._id)
+      filtered[category] = list[category].map((e) => trimProductData(e))
     });
 
-    saveNewList(filtersIds, userId, () => {
+    const name = window.prompt('Name this list:') || 'My Shopping List';
+
+    saveNewList(filtered, userId, name, (listId) => {
+      saveListToState({ _id: listId, list: filtered, name });
       history.push('/search')
     });
   }

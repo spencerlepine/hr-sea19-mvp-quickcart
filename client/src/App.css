@@ -197,3 +197,33 @@ button {
   width: 2em;
   padding: 0;
 }
+
+.searchBar {
+  max-width: 700px;
+  margin: 0.6em auto;
+  padding: 0.4em;
+  display: flex;
+  border: 1px solid #d8d8d8;
+  background-color: #f3f3f3;
+}
+
+.searchBar input {
+  width: 400px;
+}
+
+.searchBar button {
+  height: 40px;
+  margin: auto !important;
+  background-color: rgb(200, 69, 22);
+}
+
+.listCard {
+  max-width: 700px;
+  margin: auto;
+}
+
+.listCard img {
+  width: 80px;
+  height: 80px;
+  margin: auto 0.2em auto 0;
+}

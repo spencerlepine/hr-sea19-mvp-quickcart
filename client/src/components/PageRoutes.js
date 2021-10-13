@@ -7,21 +7,35 @@ import {
 import HomePage from './HomePage/HomePage';
 import ListGenerator from './ListGenerator/ListGenerator';
 import ListViewer from './ListViewer/ListViewer';
+import SigninButton from './Header/SigninButton/SigninButton';
+import useAuth from '../context/AuthContext';
 
-const PageRoutes = () => (
-  <main className="container">
-    <Switch >
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-      <Route path="/list">
-        <ListGenerator />
-      </Route>
-      <Route path="/search">
-        <ListViewer />
-      </Route>
-    </Switch>
-  </main>
-);
+const PageRoutes = () => {
+  const { currentUser } = useAuth();
+
+  return (
+    <main className="container">
+      {currentUser ? (
+        <Switch >
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route path="/list">
+            <ListGenerator />
+          </Route>
+          <Route path="/search">
+            <ListViewer />
+          </Route>
+        </Switch>
+      ) : (
+        <Switch >
+          <Route path="/">
+            <SigninButton />
+          </Route>
+        </Switch>
+      )}
+    </main>
+  )
+};
 
 export default PageRoutes;
