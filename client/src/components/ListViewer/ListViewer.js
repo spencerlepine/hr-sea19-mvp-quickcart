@@ -4,23 +4,23 @@ import { fetchAllUserLists } from '../../api';
 import NewListButton from '../NewListButton/NewListButton';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import useAuth from '../../context/AuthContext';
 
 const ListViewer = () => {
   const [allLists, setAllLists] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { userId } = useAuth();
 
   useEffect(() => {
     if (loading === false) {
       setLoading(true);
-      // Here
-      const userId = window.prompt('Enter your userId') || 'demoUser';
 
       fetchAllUserLists(userId, (listResult) => {
         setAllLists(listResult)
         setLoading(false);
       });
     }
-  }, []);
+  }, [userId]);
 
   return (
     <div className="listViewer">

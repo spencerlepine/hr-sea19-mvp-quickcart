@@ -8,6 +8,7 @@ import categories from '../../config/categories';
 import { useLocation, useHistory } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import useAuth from '../../context/AuthContext';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -20,6 +21,7 @@ const ListGenerator = () => {
 
   let listId = useQuery().get('id');
   const history = useHistory();
+  const { userId } = useAuth();
 
   const incrementProgress = () => {
     const delay = 1000;
@@ -50,9 +52,8 @@ const ListGenerator = () => {
     Object.keys(list).forEach((category) => {
       filtersIds[category] = list[category].map((e) => e._id)
     });
-    console.log(filtersIds)
 
-    saveNewList(filtersIds, () => {
+    saveNewList(filtersIds, userId, () => {
       history.push('/search')
     });
   }

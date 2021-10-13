@@ -40,10 +40,8 @@ export const findReplacementItem = (category, callback) => {
     .catch((err) => console.log(err))
 }
 
-export const saveNewList = (list, callback) => {
+export const saveNewList = (list, userId, callback) => {
   const url = `${SERVER_URL}${endpointURL}/list/save`;
-  // HERE
-  const userId = window.prompt('Enter your userId') || 'demoUser';
 
   axios.post(url, { list, userId })
     .then(() => {
