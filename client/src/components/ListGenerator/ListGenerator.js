@@ -7,21 +7,40 @@ import { generateGroceryList, saveNewList } from '../../api';
 import categories from '../../config/categories';
 import { useLocation, useHistory } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 const ListGenerator = () => {
+  const [progress, setProgress] = useState(0);
   const [groceryList, setGroceryList] = useState({});
+  const listItemsCount = Object.values(groceryList).reduce((sum, elem) => sum += elem.length, 0);
+
   let listId = useQuery().get('id');
   const history = useHistory();
-  const listItemsCount = Object.values(groceryList).reduce((sum, elem) => sum += elem.length, 0);
+
+  const incrementProgress = () => {
+    const delay = 1000;
+    if (progress < 100) {
+      setTimeout(() => {
+        setProgress(prevProgress => prevProgress + 1);
+        incrementProgress();
+      }, delay)
+    }
+  }
+  incrementProgress();
 
   useEffect(() => {
     if (!listId && listItemsCount === 0) {
+      setProgress(0);
       generateGroceryList(categories, (newList) => {
-        setGroceryList(newList);
+        if (JSON.stringify(newList) === '{}') {
+          setGroceryList({ 'Error, please try again': [] });
+        } else {
+          setGroceryList(newList);
+        }
       });
     }
   }, [listId, listItemsCount]);
@@ -75,7 +94,12 @@ const ListGenerator = () => {
               ))}
             </>
           ) : (
-            <Spinner animation="grow" className="loadingSpinner" />
+            <div className="listLoading">
+              <Spinner animation="border" className="loadingSpinner" />
+              <h2>Generating List...</h2>
+              <img src="https://media2.giphy.com/media/1YeNJK6FptDdq1q59K/giphy.gif?cid=ecf05e4755i07bt424d07ytq7zbbt8rj9muzhywvfxtsl7po&rid=giphy.gif&ct=g" alt="Loading Mascost" />
+              <ProgressBar animated now={progress} />
+            </div>
           )}
         </>
       )}

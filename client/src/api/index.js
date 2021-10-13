@@ -14,7 +14,10 @@ export const generateGroceryList = (categories, callback) => {
     .then((listMeta) => {
       callback(listMeta.data)
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      callback({})
+      console.log(err)
+    })
 }
 
 export const removeListItem = (listId, product, category, callback) => {

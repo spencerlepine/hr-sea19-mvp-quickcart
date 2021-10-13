@@ -9,17 +9,19 @@ import ListGenerator from './ListGenerator/ListGenerator';
 import ListViewer from './ListViewer/ListViewer';
 
 const PageRoutes = () => (
-  <Switch>
-    <Route exact path="/">
-      <HomePage />
-    </Route>
-    <Route path="/list">
-      <ListGenerator />
-    </Route>
-    <Route path="/search">
-      <ListViewer />
-    </Route>
-  </Switch>
+  <main className="container">
+    <Switch >
+      <Route exact path="/">
+        <HomePage />
+      </Route>
+      <Route path="/list">
+        <ListGenerator />
+      </Route>
+      <Route path="/search">
+        <ListViewer />
+      </Route>
+    </Switch>
+  </main>
 );
 
 export default PageRoutes;

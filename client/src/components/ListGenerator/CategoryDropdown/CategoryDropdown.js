@@ -30,7 +30,7 @@ const CategoryDropdown = ({ groceries, categoryName, setGroceryList }) => {
                 ))}
               </>
             ) : (
-              <Spinner animation="grow" />
+              <p>No items found..</p>
             )
           }
         </>
