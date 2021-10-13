@@ -5,6 +5,10 @@ const userListSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   list: {
     type: String,
     required: true,

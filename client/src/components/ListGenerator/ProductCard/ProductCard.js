@@ -26,9 +26,16 @@ const NutritionPopup = ({ togglePopup, product }) => (
   </Popup>
 );
 
-const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
+const ProductCard = ({ useCheckmark, groceryObj, category, setGroceryList, listId }) => {
   const [showNutrition, setShowNutrition] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [disableItem, setDisabled] = useState(false);
+
+  const handleCheck = () => {
+    if (useCheckmark) {
+      setDisabled(!disableItem)
+    }
+  }
 
   const handleRemove = () => {
     const filterList = (prevList) => {
@@ -76,36 +83,47 @@ const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
         <Spinner animation="border" />
       ) : (
         <>
-          <img alt="Product" src={groceryObj.image}></img>
-
-          <div className="productCardDetails">
-
-            <h5>{(groceryObj.name || '').substring(0, 30)}</h5>
-
-            <>
-              <Button
-                className="nutritionButton"
-                onClick={() => setShowNutrition(!showNutrition)}
-              >
-                View Nutrition
-              </Button>
-              {showNutrition && (
-                <NutritionPopup product={groceryObj} togglePopup={() => setShowNutrition(!showNutrition)} />
-              )}
-            </>
-
-            <div className="productCardButtons">
-              {category && (
-                <>
-                  <button className="replaceButton" onClick={handleReplace}>Replace</button>
-                  <button className="removeButton" onClick={handleRemove}>Remove</button>
-                </>
-              )}
+          {disableItem ? (
+            <div className="productCardDetails checked" onClick={handleCheck}>
+              <img src="http://yanacupunctureherbs.com/wp-content/uploads/2016/08/check-mark-8-xxl.png" alt="Check mark"></img>
+              <p>{(groceryObj.name || '').substring(0, 30)}</p>
             </div>
-          </div>
+          ) : (
+            <>
+              <img alt="Product" src={groceryObj.image}></img>
+
+              <div className="productCardDetails" onClick={handleCheck}>
+
+                <h5>{(groceryObj.name || '').substring(0, 30)}</h5>
+
+                <>
+                  <Button
+                    className="nutritionButton"
+                    onClick={() => setShowNutrition(!showNutrition)}
+                  >
+                    View Nutrition
+                  </Button>
+                  {showNutrition && (
+                    <NutritionPopup product={groceryObj} togglePopup={() => setShowNutrition(!showNutrition)} />
+                  )}
+                </>
+
+                <div className="productCardButtons">
+                  {category && (
+                    <>
+                      <button className="replaceButton" onClick={handleReplace}>Replace</button>
+                      <button className="removeButton" onClick={handleRemove}>Remove</button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </>
+          )
+          }
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

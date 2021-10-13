@@ -4,6 +4,8 @@ const sampleList = require('./sampleResponse.json');
 const extractValidProducts = require('./extractValidProducts');
 const UserList = require('../../models/UserList');
 
+// https://medium.com/@diogo.fg.pinheiro/simple-to-do-list-app-with-node-js-and-mongodb-chapter-2-3780a1c5b039
+
 const options = {
   headers: {
     'content-type': 'application/json',
@@ -34,8 +36,6 @@ module.exports = {
       return;
     }
 
-    res.status(200).json(sampleList);
-    /*
     const { categories: preFormat } = req.query;
     const categories = JSON.parse(preFormat);
 
@@ -62,16 +62,19 @@ module.exports = {
 
         res.status(200).json(sorted);
       });
-      */
   },
-  removeListItem: () => {
-    console.log('yeet');
-    // HERE
+  removeListItem: (req, res) => {
+    UserList.deleteOne({ _id: req.query.listId }, (err, obj) => {
+      if (err) throw err;
+
+      res.status(202).json('Successfully deleted list');
+    });
   },
   saveEntireList: (req, res) => {
     const userList = new UserList({
       userId: req.body.userId,
       list: JSON.stringify(req.body.list),
+      name: req.body.name,
     });
 
     const savePromise = new Promise((resolve, reject) => {
@@ -109,6 +112,18 @@ module.exports = {
   updateExistingList: () => {
     console.log('yeet');
     // HERE
+  },
+  fetchSingleList: (req, res) => {
+    const { userId: id, listId } = req.query;
+
+    UserList.find({ userId: id, _id: listId })
+      .then((result) => {
+        res.status(200).json(result[0]);
+      })
+      .catch((err) => {
+        res.status(500).send(err);
+        console.error(`Failed to find documents: ${err}`);
+      });
   },
 };
 

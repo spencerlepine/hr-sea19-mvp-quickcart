@@ -10,7 +10,7 @@ import useListStorage from '../../context/ListStorageContext';
 
 const ListViewer = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { allLists, loading, fetchUserLists } = useListStorage();
+  const { allLists, loading, fetchUserLists, deleteList } = useListStorage();
   const history = useHistory();
   const { userId } = useAuth();
 
@@ -44,10 +44,14 @@ const ListViewer = () => {
           {allLists.map(({ _id, name, list: listObj }, i) => (
             <>
               {(searchQuery === '' || (new RegExp(`${searchQuery}`, 'gi')).test(name)) && (
-                <div key={_id} className="listCard" onClick={() => handleListSelect(_id)}>
-                  <p>{JSON.stringify(name)}</p>
-                  <hr />
-                  <p>Item count: {Object.values(listObj).reduce((sum, elem) => sum += elem.length, 0)}</p>
+                <div key={_id} className="listCard">
+                  <div className="listDetails" onClick={() => handleListSelect(_id)}>
+                    <h4>{name}</h4>
+                    <p>Item count: {Object.values(listObj).reduce((sum, elem) => sum += elem.length, 0)}</p>
+                  </div>
+                  <div>
+                    <button onClick={() => deleteList(_id)}>Delete</button>
+                  </div>
                 </div>
               )}
             </>
