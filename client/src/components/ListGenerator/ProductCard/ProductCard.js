@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Popup from '../../Popup/Popup';
 import Modal from 'react-bootstrap/Modal';
 import { findReplacementItem, removeListItem } from '../../../api';
+import Spinner from 'react-bootstrap/Spinner';
 
 const NutritionPopup = ({ togglePopup, product }) => (
   <Popup>
@@ -31,6 +32,7 @@ const NutritionPopup = ({ togglePopup, product }) => (
 
 const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
   const [showNutrition, setShowNutrition] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleRemove = () => {
     const filterList = (prevList) => {
@@ -53,6 +55,7 @@ const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
   }
 
   const handleReplace = () => {
+    setLoading(true);
     findReplacementItem(category, (newProduct) => {
       if (listId) {
         removeListItem(groceryObj);
@@ -67,38 +70,45 @@ const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
         });
         return output
       })
+      setLoading(false);
     });
   }
 
   return (
     <div key={groceryObj["_id"]} className="listCard">
-      <img alt="Product" src={groceryObj.image}></img>
-
-      <div className="productCardDetails">
-
-        <h5>{groceryObj.name}</h5>
-
+      {loading ? (
+        <Spinner animation="border" />
+      ) : (
         <>
-          <Button
-            className="nutritionButton"
-            onClick={() => setShowNutrition(!showNutrition)}
-          >
-            View Nutrition
-          </Button>
-          {showNutrition && (
-            <NutritionPopup product={groceryObj} togglePopup={() => setShowNutrition(!showNutrition)} />
-          )}
-        </>
+          <img alt="Product" src={groceryObj.image}></img>
 
-        <div className="productCardButtons">
-          {category && (
+          <div className="productCardDetails">
+
+            <h5>{groceryObj.name}</h5>
+
             <>
-              <button className="replaceButton" onClick={handleReplace}>Replace</button>
-              <button className="removeButton" onClick={handleRemove}>Remove</button>
+              <Button
+                className="nutritionButton"
+                onClick={() => setShowNutrition(!showNutrition)}
+              >
+                View Nutrition
+              </Button>
+              {showNutrition && (
+                <NutritionPopup product={groceryObj} togglePopup={() => setShowNutrition(!showNutrition)} />
+              )}
             </>
-          )}
-        </div>
-      </div>
+
+            <div className="productCardButtons">
+              {category && (
+                <>
+                  <button className="replaceButton" onClick={handleReplace}>Replace</button>
+                  <button className="removeButton" onClick={handleRemove}>Remove</button>
+                </>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

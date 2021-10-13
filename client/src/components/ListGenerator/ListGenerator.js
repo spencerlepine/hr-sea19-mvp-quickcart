@@ -3,16 +3,10 @@ import NewListButton from '../NewListButton/NewListButton';
 import Button from 'react-bootstrap/Button';
 import CategoryDropdown from './CategoryDropdown/CategoryDropdown';
 import ProductCard from './ProductCard/ProductCard';
-import { generateGroceryList } from '../../api';
+import { generateGroceryList, saveNewList } from '../../api';
 import categories from '../../config/categories';
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
-
-// HERE
-// Save list to cart
-const SaveButton = () => (
-  <Button>Save List</Button>
-);
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -21,6 +15,7 @@ function useQuery() {
 const ListGenerator = () => {
   const [groceryList, setGroceryList] = useState({});
   let listId = useQuery().get('id');
+  const history = useHistory();
   const listItemsCount = Object.values(groceryList).reduce((sum, elem) => sum += elem.length, 0);
 
   useEffect(() => {
@@ -31,12 +26,27 @@ const ListGenerator = () => {
     }
   }, [listId, listItemsCount]);
 
+  const handleSaveList = (list) => {
+    const filtersIds = {};
+    Object.keys(filtersIds).forEach((category) => {
+      filtersIds[category] = list[category].map((e) => e._id)
+    });
+
+    saveNewList(filtersIds, () => {
+      history.push('/search')
+    });
+  }
+
+  const SaveButton = () => (
+    <Button onClick={() => handleSaveList(groceryList)} variant="primary">Save List</Button>
+  );
+
   return (
     <div className="listGenerator">
       <section>
         <NewListButton />
 
-        {listId && <SaveButton />}
+        {!listId && <SaveButton />}
       </section>
 
       {listId ? (

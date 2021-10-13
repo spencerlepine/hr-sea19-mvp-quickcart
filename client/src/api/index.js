@@ -36,3 +36,12 @@ export const findReplacementItem = (category, callback) => {
     })
     .catch((err) => console.log(err))
 }
+
+export const saveNewList = (list, callback) => {
+  const url = `${SERVER_URL}${endpointURL}/list/save`
+  axios.post(url, list)
+    .then(() => {
+      callback();
+    })
+    .catch((err) => console.log(err))
+}
