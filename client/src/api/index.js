@@ -52,15 +52,12 @@ export const saveNewList = (list, callback) => {
     .catch((err) => console.log(err))
 }
 
-export const fetchAllUserLists = (list, callback) => {
-  // Here
-  const userId = window.prompt('Enter your userId') || 'demoUser';
-
+export const fetchAllUserLists = (userId, callback) => {
   const url = `${SERVER_URL}${endpointURL}/list/user?userId=${userId}`;
 
   axios.get(url)
     .then((listData) => {
-      const parsed = listData.map((e) => (JSON.parse(e.list)))
+      const parsed = listData.data.map((e) => ({ ...e, list: JSON.parse(e.list) }))
       callback(parsed);
     })
     .catch((err) => console.log(err))
