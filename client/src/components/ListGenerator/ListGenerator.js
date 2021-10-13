@@ -23,7 +23,7 @@ const ListGenerator = () => {
 
   const incrementProgress = () => {
     const delay = 1000;
-    if (progress < 100) {
+    if (progress < 100 && listItemsCount === 0) {
       setTimeout(() => {
         setProgress(prevProgress => prevProgress + 1);
         incrementProgress();
@@ -56,16 +56,14 @@ const ListGenerator = () => {
     });
   }
 
-  const SaveButton = () => (
-    <Button onClick={() => handleSaveList(groceryList)} variant="primary">Save List</Button>
-  );
-
   return (
     <div className="listGenerator">
-      <section>
+      <section className="navLinks">
         <NewListButton />
 
-        {!listId && <SaveButton />}
+        {!listId && <Button className="saveButton" onClick={() => handleSaveList(groceryList)} variant="primary">Save List</Button>}
+
+        <Button onClick={() => history.push('/search')} variant="primary">View All</Button>
       </section>
 
       {listId ? (

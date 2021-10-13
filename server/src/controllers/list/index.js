@@ -33,6 +33,8 @@ module.exports = {
       return;
     }
 
+    res.status(200).json(sampleList);
+    /*
     const { categories: preFormat } = req.query;
     const categories = JSON.parse(preFormat);
 
@@ -59,6 +61,7 @@ module.exports = {
 
         res.status(200).json(sorted);
       });
+      */
   },
   removeListItem: () => {
     console.log('yeet');

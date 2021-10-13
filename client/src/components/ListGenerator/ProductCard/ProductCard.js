@@ -84,7 +84,7 @@ const ProductCard = ({ groceryObj, category, setGroceryList, listId }) => {
 
           <div className="productCardDetails">
 
-            <h5>{groceryObj.name}</h5>
+            <h5>{(groceryObj.name).substring(0, 30)}</h5>
 
             <>
               <Button

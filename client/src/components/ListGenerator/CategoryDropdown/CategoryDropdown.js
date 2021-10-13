@@ -13,6 +13,8 @@ const CategoryDropdown = ({ groceries, categoryName, setGroceryList }) => {
   return (
     <div className="categoryDropdown">
       <button
+        disabled={formattedGroceries.length === 0}
+        style={{ backgroundColor: formattedGroceries.length === 0 ? '#9e9eba' : 'rgb(73 63 190)' }}
         onClick={() => setExpandCategory(!expandCategory)}
         className="categoryExpandBtn">
         {!expandCategory ? 'Show More' : 'Minimize'}
