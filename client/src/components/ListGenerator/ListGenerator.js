@@ -87,9 +87,9 @@ const ListGenerator = () => {
       <section className="navLinks">
         <NewListButton />
 
-        {!listId && <Button className="saveButton" onClick={() => handleSaveList(groceryList)} variant="primary">Save List</Button>}
+        {(!listId && Object.keys(groceryList).length > 0) && <Button className="saveButton" onClick={() => handleSaveList(groceryList)} variant="primary">Save List</Button>}
 
-        <Button onClick={() => history.push('/search')} variant="primary">View All</Button>
+        <Button onClick={() => history.push('/search')} variant="primary" className="viewAll">View All</Button>
       </section>
 
       {listId ? (
@@ -101,7 +101,8 @@ const ListGenerator = () => {
               listId={listId}
               setGroceryList={setGroceryList}
               key={groceryObj['_id']}
-              groceryObj={groceryObj} />
+              groceryObj={groceryObj}
+              useCheckmark={true} />
           ))}
         </>
       ) : (

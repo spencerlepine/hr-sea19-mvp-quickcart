@@ -73,3 +73,12 @@ export const fetchAllUserLists = (userId, callback) => {
     .catch((err) => console.log(err))
 }
 
+export const deleteUserList = (listId, callback) => {
+  const url = `${SERVER_URL}${endpointURL}/list/remove?listId=${listId}`;
+
+  axios.delete(url)
+    .then(() => {
+      callback(listId);
+    })
+    .catch((err) => console.log(err))
+}

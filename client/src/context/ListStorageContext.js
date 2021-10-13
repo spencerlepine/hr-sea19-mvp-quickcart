@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { fetchAllUserLists, fetchSingleList } from '../api';
+import { fetchAllUserLists, fetchSingleList, deleteUserList } from '../api';
 
 export const ListStorageContext = React.createContext();
 
@@ -47,12 +47,21 @@ export const ListStorageProvider = ({ children }) => {
     });
   }
 
+  const deleteList = (listId) => {
+    deleteUserList(listId, () => {
+      setAllLists((prevList) => prevList.filter(
+        (list) => list._id !== listId
+      ));
+    });
+  }
+
   const value = {
     loading,
     renderOrFetchList,
     saveListToState,
     fetchUserLists,
     allLists: allLists,
+    deleteList,
   };
 
   return <ListStorageContext.Provider value={value}>{children}</ListStorageContext.Provider>;

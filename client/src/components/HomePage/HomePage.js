@@ -3,7 +3,7 @@ import NewListButton from '../NewListButton/NewListButton';
 import ViewAllButton from '../ViewAllButton/ViewAllButton';
 
 const HomePage = () => (
-  <main>
+  <main className="navLinks" >
     <h4>Create your list today</h4>
     <NewListButton />
     <ViewAllButton />

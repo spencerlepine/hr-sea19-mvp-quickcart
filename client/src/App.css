@@ -109,7 +109,7 @@ button {
 }
 
 .listCard .replaceButton {
-  background-color: rgb(211, 159, 0);
+  background-color: rgb(211, 159, 0) !important;
 }
 
 .listCard .removeButton {
@@ -157,7 +157,7 @@ button {
   text-align: center;
   position: relative;
   max-width: 400px;
-  margin: auto;
+  margin: 1em auto;
 }
 
 .listLoading h2 {
@@ -218,12 +218,58 @@ button {
 }
 
 .listCard {
+  display: flex;
   max-width: 700px;
-  margin: auto;
+  margin: 0.3em auto;
+}
+
+.listCard:hover {
+  background-color: rgb(220, 220, 220);
 }
 
 .listCard img {
   width: 80px;
   height: 80px;
   margin: auto 0.2em auto 0;
+}
+
+.listCard .listDetails {
+  width: fit-content;
+}
+
+.listCard div:nth-child(2) {
+  margin-left: auto;
+}
+
+.listCard div:nth-child(2) button {
+  background-color: rgb(228, 49, 49);
+}
+
+.listCard div:nth-child(2) button:hover {
+  background-color: rgb(152, 19, 19);
+}
+
+.navLinks {
+  width: fit-content;
+  margin: auto;
+}
+
+.navLinks button {
+  font-size: 1.4em;
+}
+
+.viewAll {
+  background-color: rgb(208, 114, 0) !important;
+}
+
+.checked {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.058);
+}
+
+.checked img {
+  height: 60px;
+  display: inline;
+  width: 60px;
+  z-index: 9;
 }
