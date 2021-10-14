@@ -1,6 +1,6 @@
 import React from 'react';
 import SigninButton from './SigninButton/SigninButton';
-// import NewListButton from '../NewListButton/NewListButton';
+import RecipesButton from './RecipesButton/RecipesButton';
 import { useHistory } from 'react-router-dom';
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className="App-header">
       <h3 onClick={() => history.push('/')}>GroceryChecc</h3>
-      {/* <NewListButton /> */}
+      <RecipesButton />
       <SigninButton />
     </header>
   )

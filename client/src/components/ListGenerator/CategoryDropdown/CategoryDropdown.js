@@ -35,6 +35,7 @@ const CategoryDropdown = ({ groceries, categoryName, setGroceryList }) => {
               <p>No items found..</p>
             )
           }
+          <ProductCard isPlaceholder key={99} groceryObj={{}} category={categoryName} setGroceryList={setGroceryList} />
         </>
       )}
       <hr />

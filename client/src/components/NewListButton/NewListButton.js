@@ -7,7 +7,7 @@ const NewListButton = () => {
   const location = useLocation();
 
   const handleClick = () => {
-    if (location.pathname === '/list') {
+    if (/\/list*/.test((location.pathname || ''))) {
       window.location.reload();
       return
     }
