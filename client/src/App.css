@@ -273,3 +273,8 @@ button {
   width: 60px;
   z-index: 9;
 }
+
+.externalIcon {
+  height: 40px !important;
+  width: 40px !important;
+}
