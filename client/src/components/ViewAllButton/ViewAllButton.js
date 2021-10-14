@@ -15,7 +15,7 @@ const ViewAllButton = () => {
   }
 
   return (
-    <Button style={{ backgroundColor: 'orange' }} variant="primary" onClick={handleClick}>View All</Button>
+    <Button style={{ backgroundColor: 'orange' }} variant="primary" onClick={handleClick}>View All Lists</Button>
   );
 };
 

@@ -8,6 +8,7 @@ import HomePage from './HomePage/HomePage';
 import ListGenerator from './ListGenerator/ListGenerator';
 import ListViewer from './ListViewer/ListViewer';
 import SigninButton from './Header/SigninButton/SigninButton';
+import RecipesPage from './RecipesPage/RecipesPage';
 import useAuth from '../context/AuthContext';
 
 const PageRoutes = () => {
@@ -25,6 +26,9 @@ const PageRoutes = () => {
           </Route>
           <Route path="/search">
             <ListViewer />
+          </Route>
+          <Route path="/recipes">
+            <RecipesPage />
           </Route>
         </Switch>
       ) : (

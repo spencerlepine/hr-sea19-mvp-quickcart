@@ -27,7 +27,7 @@ const fetch = (req, res, url, params, data, method) => (
 
 module.exports = {
   findItemReplacement: (req, res) => {
-    if (req.params.category) {
+    if (!req.params.category) {
       res.status(400).send('Must specify category');
     }
 
@@ -37,7 +37,7 @@ module.exports = {
       return Math.floor(Math.random() * (max - nmin + 1)) + nmin;
     }
 
-    fetch(req, res, `/category/${req.params.category}/1.json?lc=en`, {}, {}, 'GET')
+    fetch(req, res, `/category/${req.params.category}/${getRandomInt(1, 5)}.json?lc=en`, {}, {}, 'GET')
       .then(({ products }) => {
         const newProduct = products[getRandomInt(0, products.length)];
         res.status(200).json(newProduct);
