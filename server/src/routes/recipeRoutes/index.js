@@ -3,6 +3,6 @@ const { fetchSeveralRecipies } = require('../../controllers/recipes');
 
 const router = express.Router();
 
-router.use('/random', fetchSeveralRecipies);
+router.get('/random', fetchSeveralRecipies);
 
 module.exports = router;

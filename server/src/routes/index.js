@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.use('/list', listRoutes);
 router.use('/products', productsRoutes);
-router.use('/recipeRoutes', recipeRoutes);
+router.use('/recipes', recipeRoutes);
 
 module.exports = router;

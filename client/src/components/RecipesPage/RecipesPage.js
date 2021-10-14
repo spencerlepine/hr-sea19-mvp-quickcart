@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Popup from '../Popup/Popup';
 import RecipeCard from './RecipeCard';
+import { useHistory } from 'react-router-dom';
 import { addRecipeToList, fetchRandomRecipes } from '../../api';
 
 import sampleRecipes from './sampleRecipes.json'
@@ -18,9 +19,11 @@ const RecipesPage = () => {
   const [renderListPopup, setRenderListPopup] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  const [recipes, setRecipes] = useState(sampleRecipes.recipes); // HERE
+  const history = useHistory();
 
-  const { allLists, saveListToState } = useListStorage();
+  const [recipes, setRecipes] = useState(sampleRecipes.recipes);
+
+  const { allLists, saveListToState, fetchUserLists } = useListStorage();
 
   const toggleDetailsPopup = () => {
     setRenderDetailsPopup(!renderDetailsPopup);
@@ -35,6 +38,7 @@ const RecipesPage = () => {
 
   const handleRefresh = () => {
     setLoading(true);
+    fetchUserLists();
     fetchRandomRecipes((newRecipes) => {
       setRecipes((prevList) => prevList.concat(newRecipes));
       setLoading(false);
@@ -49,6 +53,7 @@ const RecipesPage = () => {
     if (selectedRecipe) {
       addRecipeToList(listObj, selectedRecipe, (newList) => {
         saveListToState(newList);
+        history.push(`/list?id=${listObj._id}`)
         toggleListPopup();
       })
     } else {

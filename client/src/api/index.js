@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../config/config';
+import transformedProducts from './transformedProducts';
 
 const SERVER_URL = config.SERVER_URL;
 const endpointURL = '/api';
@@ -82,3 +83,38 @@ export const deleteUserList = (listId, callback) => {
     })
     .catch((err) => console.log(err))
 }
+
+/*
+* listObj._id
+* selectedRecipe.id
+*/
+export const addRecipeToList = (listObj, selectedRecipe, callback) => {
+  const url = `${SERVER_URL}${endpointURL}/list/update?listId=${listObj._id}`;
+
+  // Formatted Recipe Products
+  // Append products to listObj.list in new category
+  const updatedListObj = {
+    ...listObj,
+    list: {
+      ...listObj.list,
+      [selectedRecipe.title]: transformedProducts(selectedRecipe.extendedIngredients)
+    },
+  }
+
+  // Send /update to server with NEW list
+  axios.put(url, updatedListObj)
+    .then((updatedList) => {
+      console.log(updatedListObj);
+      callback(updatedListObj)
+    })
+}
+
+export const fetchRandomRecipes = (callback) => {
+  const url = `${SERVER_URL}${endpointURL}/recipes/random`;
+
+  axios.get(url)
+    .then((recipes) => {
+      callback(recipes.data);
+    })
+    .catch((err) => console.log(err))
+};

@@ -109,9 +109,13 @@ module.exports = {
         console.error(`Failed to find documents: ${err}`);
       });
   },
-  updateExistingList: () => {
-    console.log('yeet');
-    // HERE
+  updateExistingList: (req, res) => {
+    UserList.replaceOne({ _id: req.query.listId }, {
+      ...req.body,
+      list: JSON.stringify(req.body.list),
+    }, (err, listObj) => {
+      res.status(201).json(req.body);
+    });
   },
   fetchSingleList: (req, res) => {
     const { userId: id, listId } = req.query;
