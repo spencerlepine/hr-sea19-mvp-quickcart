@@ -8,6 +8,8 @@ Automating this process saves time and money. With a dynamic list stored for eac
 
 ## Project Overview:
 
+The goal of this project was building a full-stack application in two days. The biggest challenge of this was managing time and balancing trade-offs between functionality and presentability.
+
 - Connected MongoDB storing grocery lists private to each user
 - Implemented Firebase Authentication tracking user accounts to store saved lists
 - Built the backend API to fetch and serialize data from the Sequelize API and the OpenFoodFacts API
