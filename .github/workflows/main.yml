@@ -86,9 +86,9 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: npm install
 
-      - name: ✅  Run tests
-        working-directory: ${{env.working-directory}}
-        run: npm run test
+      # - name: ✅  Run tests
+      #   working-directory: ${{env.working-directory}}
+      #   run: npm run test
 
       - name: 🔴 Lint all files
         working-directory: ${{env.working-directory}}
