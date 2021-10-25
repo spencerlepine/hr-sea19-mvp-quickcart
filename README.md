@@ -1,4 +1,4 @@
-# GroceryChecc [![CI](https://github.com/spencerlepine/hr-sea19-mvp/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/spencerlepine/hr-sea19-mvp/actions/workflows/main.yml)
+# GroceryChecc [![CI](https://github.com/spencerlepine/hr-sea19-mvp/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/spencerlepine/hr-sea19-mvp/actions/workflows/main.yml) - [Demo](https://grocery-checc.herokuapp.com/)
 
 GroceryChecc simplifies brainstorming a shopping list by helping find relevant grocery products and replacement items for you. Helping busy parents save time by generating a complete grocery shopping list from the couch.
 
