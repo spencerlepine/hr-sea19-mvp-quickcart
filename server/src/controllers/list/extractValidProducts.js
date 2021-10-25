@@ -5,7 +5,7 @@ const getRandomInt = (min, max) => {
 };
 
 const isValidProduct = (productData) => {
-  if (productData && (productData['name'] || productData['product_name']) && productData['lc'] === 'en' && (productData['popularity_key'] || 0) > 5) {
+  if (productData && (productData.name || productData.product_name) && productData.lc === 'en' && (productData.popularity_key || 0) > 5) {
     return true;
   }
   return false;
@@ -21,7 +21,12 @@ const extractValidProducts = (productList, productCount) => {
   let tries = 0;
   while (outputList.length < productCount && tries < 100) {
     const thisProduct = productList[randomIndex];
-    if (isValidProduct(thisProduct) && (outputList.length === 0 || outputList.every((e) => e['_id'] !== thisProduct['_id']))) {
+    const valid = (outputList.length === 0 || outputList.every((e) => {
+      const { _id: id } = e;
+      const { _id: prodId } = thisProduct;
+      return id !== prodId;
+    }));
+    if (isValidProduct(thisProduct) && valid) {
       outputList.push(thisProduct);
     }
     tries += 1;
